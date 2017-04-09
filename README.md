@@ -78,7 +78,6 @@ const calculate = chain(
 
 console.log(calculate('foo')); // 14
 ```
----
 
 ## So why would you want to do this?
 
