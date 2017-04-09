@@ -81,7 +81,7 @@ console.log(calculate('foo')); // 14
 
 ## So why would you want to do this?
 
-Here is an example of a chain that is configuring an express server.
+Here is an example of using succession to configure an express server.
 
 ```js
 import express from 'express';
