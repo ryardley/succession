@@ -2,9 +2,29 @@
   "name": "succession",
   "version": "0.0.0",
   "description": "Library for handling chained functions",
-  "main": "index.js",
+  "main": "lib/index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "tape -r babel-register src/**/*.test.js | tap-spec"
+  },
   "dependencies": {
     "ramda": "^0.23.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-register": "^6.24.1",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
   }
 }
