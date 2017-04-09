@@ -1,7 +1,7 @@
 # Succession
 Succession is a tool for creating dynamic function chains. It is similar to `lodash`'s `flow`
-or `ramda`'s `pipe` with one important exception, namely that you can *force functions to run
-at the very start or very end of the chain no matter where the handler is added.*
+or `ramda`'s `pipe` with one important exception, namely that you can **force functions to run
+at the very start or very end of the chain no matter where the handler is added.**
 
 ## Usage
 
