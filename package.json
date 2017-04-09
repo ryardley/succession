@@ -3,5 +3,8 @@
   "version": "0.0.0",
   "description": "Library for handling chained functions",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ramda": "^0.23.0"
+  }
 }
