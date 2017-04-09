@@ -3,6 +3,8 @@ Succession is a tool for creating dynamic function chains. It is similar to `lod
 or `ramda`'s `pipe` with one important exception, namely that you can *force functions to run
 at the very start or very end of the chain no matter where the handler is added.*
 
+## Usage
+
 ```js
 
 import chain from 'succession';
@@ -22,6 +24,8 @@ console.log(calculate(10)); // 14
 
 ```
 
+### Nesting
+
 Nesting also works as expected
 
 ```js
@@ -37,6 +41,8 @@ const calculate = chain(
 
 console.log(calculate(10)); // 14
 ```
+
+### Force functions to the start or end
 
 Here is the important part: **You can then force a handler to the end of the chain from the sub chain.**
 
@@ -72,8 +78,9 @@ const calculate = chain(
 
 console.log(calculate('foo')); // 14
 ```
+---
 
-So why would you want to do this?
+## So why would you want to do this?
 
 Here is an example of a chain that is configuring an express server.
 
