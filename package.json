@@ -8,6 +8,7 @@
     "build": "babel src -d lib",
     "test": "tape -r babel-register src/**/*.test.js | tap-spec"
   },
+  "repository": "https://github.com/ryardley/succession",
   "dependencies": {
     "ramda": "^0.23.0"
   },
