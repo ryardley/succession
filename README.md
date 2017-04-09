@@ -88,16 +88,14 @@ import express from 'express';
 import path from 'path';
 import chain from 'succession';
 
-const initApp = (app = express()) => {
-  return app;
-}
+const initApp = (app) => app || express();
 
 const serveStaticFiles = (app) => {
   app.use('/static', express.static(path.join(__dirname, 'static')));
   return app;
 }
 
-const launchServer = (app = express()) => {
+const launchServer = (app) => {
   app.listen(5000, () => {
     console.log('Listening on 5000');
   });
