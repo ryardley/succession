@@ -38,7 +38,7 @@ const calculate = chain(
 console.log(calculate(10)); // 14
 ```
 
-Here is the important part: *You can then force a handler to the end of the chain from the sub chain.*
+Here is the important part: **You can then force a handler to the end of the chain from the sub chain.**
 
 ```js
 // ...
