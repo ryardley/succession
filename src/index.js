@@ -33,7 +33,7 @@ function orderList(list) {
   return flatList.concat().sort(sortByTag(item => item.sortTag || 0))
 }
 
-function chainFunctions(list) {
+function linkFunctions(list) {
   const orderedList = orderList(list);
   return (...args) => {
     if (orderedList.length === 0) {
@@ -42,7 +42,7 @@ function chainFunctions(list) {
     const next = orderedList[0];
     const rest = orderedList.slice(1);
     const nextVal = next(...args);
-    return chainFunctions(rest)(nextVal);
+    return linkFunctions(rest)(nextVal);
   };
 }
 
@@ -50,5 +50,5 @@ export default function chain(...list) {
   const first = handler => chain(...list, tag(1, handler));
   const addLink = (handler, order) => chain(...list, tag(order, handler));
   const last = handler => chain(...list, tag(-1, handler));
-  return Object.assign(chainFunctions(list), { list, last, first, addLink });
+  return Object.assign(linkFunctions(list), { list, last, first, addLink });
 }

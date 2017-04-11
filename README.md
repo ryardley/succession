@@ -145,7 +145,7 @@ console.log(c()); // 2
 Register a handler as a link at a point in the chain given by `order`. order is an integer beginning at `1`.
 `1` will be the first item and `2` will be the second. `0` will leave the order as is.
 Negative integers will position items at the end of the list. ie. `-1` will push an item to the end. `-2`
-will be second from the end.
+will be second from the end. The method returns the new chain. Note the old chain will *not be mutated*!
 
 ```js
 import chain from 'succession';
