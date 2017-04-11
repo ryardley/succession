@@ -128,7 +128,7 @@ chain(express, expressRouter);
 
 ## API
 
-### `chain(...handlers)`
+### `chain(...handlers): Chain`
 
 Create a new chain
 
@@ -168,7 +168,7 @@ console.log(calls); // ['b', 'a']
 
 ```
 
-### `first(handler)`
+### `first(handler): Chain`
 
 The same as calling addLink with an order of `1`.
 
@@ -178,7 +178,7 @@ import chain from 'succession';
 chain((v) => v + 1).first(() => 1);
 ```
 
-### `last(handler)`
+### `last(handler): Chain`
 
 The same as calling addLink with an order of `1`.
 
