@@ -1,14 +1,36 @@
 import { flatten } from 'ramda';
 
 const tag = (sortTag, item) => Object.assign(item, { sortTag });
-const hasTag = sortTag => item => item.sortTag === sortTag;
+const getTag = sortTag => item => item.sortTag;
+const hasTag = tag => item => item.sortTag === tag;
+
+function nlize(int){
+  if(int < 0){
+    return Number.MAX_SAFE_INTEGER + int;
+  }
+  if(int > 0){
+    return Number.MIN_SAFE_INTEGER + int;
+  }
+  return int;
+}
+
+const sortByTag = tagFinder => (a, b) => {
+  const an = nlize(tagFinder(a));
+  const bn = nlize(tagFinder(b));
+  if(an > bn){
+    return 1;
+  }
+  if(an === bn){
+    return 0;
+  }
+  if(an < bn){
+    return -1;
+  }
+}
 
 function orderList(list) {
   const flatList = flatten(list.map(i => (i.list ? i.list : i)));
-  const firsts = flatList.filter(hasTag('first'));
-  const lasts = flatList.filter(hasTag('last'));
-  const rest = flatList.filter(hasTag());
-  return [...firsts, ...rest, ...lasts];
+  return flatList.concat().sort(sortByTag(item => item.sortTag || 0))
 }
 
 function chainFunctions(list) {
@@ -25,7 +47,8 @@ function chainFunctions(list) {
 }
 
 export default function chain(...list) {
-  const first = handler => chain(...list, tag('first', handler));
-  const last = handler => chain(...list, tag('last', handler));
-  return Object.assign(chainFunctions(list), { list, last, first });
+  const first = handler => chain(...list, tag(1, handler));
+  const addLink = (handler, order) => chain(...list, tag(order, handler));
+  const last = handler => chain(...list, tag(-1, handler));
+  return Object.assign(chainFunctions(list), { list, last, first, addLink });
 }

@@ -125,3 +125,48 @@ import {expressRouter} from './router';
 
 chain(express, expressRouter);
 ```
+
+## API
+
+### `chain(...handlers)`
+
+Create a new chain
+
+```js
+import chain from 'succession';
+
+chain(() => 1, (v) => v + 1);
+```
+
+### `addLink(handler, order): Chain`
+
+Register a handler as a link at a point in the chain given by `order`. order is an integer beginning at `1`.
+`1` will be the first item and `2` will be the second. `0` will leave the order as is.
+Negative integers will position items at the end of the list. ie. `-1` will push an item to the end. `-2`
+will be second from the end.
+
+```js
+import chain from 'succession';
+
+chain().addLink(() => 1).addLink((v) => v + 1);
+```
+
+### `first(handler)`
+
+The same as calling addLink with an order of `1`.
+
+```js
+import chain from 'succession';
+
+chain((v) => v + 1).first(() => 1);
+```
+
+### `last(handler)`
+
+The same as calling addLink with an order of `1`.
+
+```js
+import chain from 'succession';
+
+chain(() => 1).last((v) => v + 1);
+```
