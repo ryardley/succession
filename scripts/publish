@@ -1,0 +1,8 @@
+#!/bin/bash
+
+TYPE=$1
+if [ -z "$TYPE" ]; then
+  echo 'Type not provided.'
+fi
+
+yarn build && npm version $TYPE && git push --tags && npm publish

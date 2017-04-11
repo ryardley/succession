@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build": "babel src -d lib",
-    "test": "tape -r babel-register src/**/*.test.js | tap-spec"
+    "test": "tape -r babel-register src/**/*.test.js | tap-spec",
+    "pub": "./scripts/publish"
   },
   "repository": "https://github.com/ryardley/succession",
   "dependencies": {
