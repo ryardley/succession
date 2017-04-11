@@ -25,19 +25,45 @@ test('test chain', (t) => {
 });
 
 test('test ordered chain', (t) => {
-  t.plan(1);
-  const callOrder = [];
-  const chainInstance = chain(
-    () => callOrder.push(1),
-    () => callOrder.push(2),
+  let calls = [];
+
+  chain(
+    () => calls.push(1),
+    () => calls.push(2),
   )
-  .addLink(() => callOrder.push(0), 1)
-  .addLink(() => callOrder.push(3), -1);
+  .addLink(() => calls.push(0), 1)
+  .addLink(() => calls.push(3), -1)();
 
-  chainInstance();
-
-  t.deepEqual(callOrder, [0,1,2,3]);
+  t.deepEqual(calls, [0,1,2,3]);
+  t.end();
 });
+
+test('test ordered chain', (t) => {
+  let calls = [];
+
+  chain()
+    .addLink(() => calls.push('a'), -1)
+    .addLink(() => calls.push('b'))();
+
+  t.deepEqual(calls, ['b','a']);
+  t.end();
+})
+
+test('test ordered chain', (t) => {
+  let calls = [];
+
+  chain()
+    .addLink(() => calls.push('f'), -1)
+    .addLink(() => calls.push('e'), -2)
+    .addLink(() => calls.push('a'), 1)
+    .addLink(() => calls.push('b'), 2)
+    .addLink(() => calls.push('c'), 2)
+    .addLink(() => calls.push('d'))
+    ();
+
+  t.deepEqual(calls, ['a', 'b', 'c', 'd', 'e', 'f']);
+  t.end();
+})
 
 test('test nested chain', (t) => {
   t.plan(1);

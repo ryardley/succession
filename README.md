@@ -135,7 +135,9 @@ Create a new chain
 ```js
 import chain from 'succession';
 
-chain(() => 1, (v) => v + 1);
+const c = chain(() => 1, (v) => v + 1);
+
+console.log(c()); // 2
 ```
 
 ### `addLink(handler, order): Chain`
@@ -148,7 +150,22 @@ will be second from the end.
 ```js
 import chain from 'succession';
 
-chain().addLink(() => 1).addLink((v) => v + 1);
+let calls = [];
+
+chain()
+  .addLink(() => calls.push('a'))
+  .addLink(() => calls.push('b'))();
+
+console.log(calls); // ['a', 'b']
+
+calls = [];
+
+chain()
+  .addLink(() => calls.push('a'), -1)
+  .addLink(() => calls.push('b'))();
+
+console.log(calls); // ['b', 'a']
+
 ```
 
 ### `first(handler)`
