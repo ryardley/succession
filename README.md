@@ -180,7 +180,7 @@ chain((v) => v + 1).first(() => 1);
 
 ### `last(handler): Chain`
 
-The same as calling addLink with an order of `1`.
+The same as calling addLink with an order of `-1`.
 
 ```js
 import chain from 'succession';
